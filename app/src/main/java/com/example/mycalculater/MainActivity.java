@@ -247,6 +247,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         }
         if(delCount!=0) {
+
             obj[0] = sb.toString();
             obj[1] = delCount;
         }else {

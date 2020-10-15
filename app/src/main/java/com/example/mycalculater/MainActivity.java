@@ -185,33 +185,79 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void handleMod(){
         String exp = editText.getText().toString();
-        String[] lastOp;
-        if(exp.indexOf("+")!=-1 ||exp.indexOf("*")!=-1
-                ||exp.indexOf("/")!=-1||exp.indexOf("-")!=-1){
-            Log.d("xxxxxxxxxxxxxx","+-*/");
-            if(exp.indexOf("+")!=-1){
-                lastOp = exp.split("[+]");
-            }
-            if(exp.indexOf("-")!=-1){
-                lastOp = exp.split("[-]");
-            }
-            if(exp.indexOf("*")!=-1){
-                lastOp = exp.split("[*]");
-            }
-            if(exp.indexOf("/")!=-1){
-                lastOp = exp.split("[/]");
-            }
 
-            editText.setText("");
-            return;
-        }
-        Log.d("xxxxxxxxxxxxxxxxxxxxx",exp+"");
-        double rst = Double.parseDouble(exp);
-        rst = rst / 100;
-        Log.d("xxxxxxxxxxxxxxxxxxxxx",rst+"");
-        String reslut = rst + "";
-        editText.setText(reslut);
+
+        editText.setText( handlePreNum(exp,handleLastNum(exp)) + (int)handleLastNum(exp) * 0.01 + "");
     }
+    public String handlePreNum(String str1,double lastNum){//处理前置字符
+        int iLastNum = (int)lastNum;
+        String str2 = "" + iLastNum;
+        Log.d("XXXXXXXXXXX","" + iLastNum);
+        Object[] result = deleteSubString(str1, str2);
+        String rst = result[0] + "";
+        Log.d("xxxxx","" + rst);
+        return rst;
+    }
+
+    public double handleLastNum(String str){//获取最后数字
+        int len = str.length();
+        int[] num = new int[len];
+        int i = len - 1;
+        int count = 0;
+        String rst = "";
+        for(;i > 0;i--){
+            if(str.charAt(i) == '+'||str.charAt(i) == '-'
+                    ||str.charAt(i) == '*'||str.charAt(i) == '/'){
+                //Log.d("xxxxxxxxxx",count + "+-*/" + i + str.charAt(i));
+                for(int j = count ;j >= 0 ;j--){
+                    //Log.d("nnnnnn","num"+ j + " " + num[j]);
+                    rst = rst + num[j];
+                }
+                //Log.d("rrrrr","rst" + rst);
+                return Double.parseDouble(rst);
+            } else if (str.charAt(i) == ' '){
+
+            } else {                                                       //如：+456  45.6
+                int mid = Integer.parseInt(str.charAt(i) + "");
+                //Log.d("midmidmid"," "  +  mid);
+                num[count] = mid;                         // 6 5 4 count == 3    6 . 5 4   c = 4
+                //Log.d("mid"," " + num[count]);
+                //Log.d("pppppppppppppppppp", "charAt:" + str.charAt(i) + " count:" + count + " "+ i);
+                count ++;
+            }
+        }
+        //Log.d("rrrrr","rst" + rst);
+        //缺无符号
+        return Double.parseDouble(str);
+    }
+
+    public Object[] deleteSubString(String str1,String str2) {//删除子字符串
+        StringBuffer sb = new StringBuffer(str1);
+        int delCount = 0;
+        Object[] obj = new Object[2];
+
+        while (true) {
+            int index = sb.indexOf(str2);
+            if(index == -1) {
+                break;
+            }
+            sb.delete(index, index+str2.length());
+            delCount++;
+
+        }
+        if(delCount!=0) {
+            obj[0] = sb.toString();
+            obj[1] = delCount;
+        }else {
+            //不存在返回-1
+            obj[0] = -1;
+            obj[1] = -1;
+        }
+
+        return obj;
+    }
+
+
 
     /**
      *

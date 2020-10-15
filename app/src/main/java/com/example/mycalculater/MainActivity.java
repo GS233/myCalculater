@@ -237,6 +237,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Object[] obj = new Object[2];
 
         while (true) {
+
             int index = sb.indexOf(str2);
             if(index == -1) {
                 break;

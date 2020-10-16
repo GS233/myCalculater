@@ -49,6 +49,9 @@ public class scienceActivity extends Activity implements View.OnClickListener{
     private  Button btn_c;//clear
     private  Button btn_more;
 
+    //
+    private Button btn_1_x_add;
+
     boolean clear_flag;//清空标识
     private EditText et;
 
@@ -80,7 +83,12 @@ public class scienceActivity extends Activity implements View.OnClickListener{
         View btn_back = findViewById(R.id.btn_back);//回格
         View btn_less = findViewById(R.id.btn_less);//跳转
 
+
+        //科学计算器
+
+        View btn_1_x_add = findViewById(R.id.btn_1_X_add);
         editText = (EditText) findViewById(R.id.et);//结果集
+
 
 
         //添加点击事件
@@ -140,11 +148,31 @@ public class scienceActivity extends Activity implements View.OnClickListener{
                 editText.setText(input + ((Button)view).getText());//结果集就为本身
                 break;
             case R.id.btn_point:
+                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 if(clear_flag){
                     clear_flag = false;
                     editText.setText("");//赋值为空
                 }
+                double lastNum = handleLastNum(editText.getText().toString());
+                Log.d("xxxxx","" + lastNum);
+                double d = 0 ;
+                if(!editText.getText().toString().equals("")){
+                    d = lastNum ;
+                }else{
+                    editText.setText(input + ((Button)view).getText());//结果集就为本身
+                    isLastPoint = true;
+                    break;
+                }
+                //Log.d("xxxxxxx",editText.getText().toString().equals("") +"");
+                if( (int)d == d) {
+                    isLastPoint = false;
+                }else {
+                    isLastPoint = true;
+                    editText.setText("err");
+                    break;
+                }
                 if(isLastPoint) {
+                    editText.setText("err");
                     break;
                 }
                 editText.setText(input + ((Button)view).getText());//结果集就为本身

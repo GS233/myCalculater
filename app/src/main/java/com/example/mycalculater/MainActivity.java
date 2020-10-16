@@ -9,6 +9,7 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -126,6 +127,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_7:
             case R.id.btn_8:
             case R.id.btn_9:
+                isLastPoint = false;
                 if(clear_flag){
                     clear_flag = false;
                     editText.setText("");//赋值为空
@@ -136,11 +138,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 editText.setText(input + ((Button)view).getText());//结果集就为本身
                 break;
             case R.id.btn_point:
+                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 if(clear_flag){
                     clear_flag = false;
                     editText.setText("");//赋值为空
                 }
+                double lastNum = handleLastNum(editText.getText().toString());
+                Log.d("xxxxx","" + lastNum);
+                double d = 0 ;
+                if(!editText.getText().toString().equals("")){
+                    d = lastNum ;
+                }else{
+                    editText.setText(input + ((Button)view).getText());//结果集就为本身
+                    isLastPoint = true;
+                    break;
+                }
+                //Log.d("xxxxxxx",editText.getText().toString().equals("") +"");
+                if( (int)d == d) {
+                    isLastPoint = false;
+                }else {
+                    isLastPoint = true;
+                    editText.setText("err");
+                    break;
+                }
                 if(isLastPoint) {
+                    editText.setText("err");
                     break;
                 }
                 editText.setText(input + ((Button)view).getText());//结果集就为本身
@@ -152,7 +174,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_div:
                 //Log.d("XXXXXXXXXXXXX","S" + editText.getText().toString());
                 if(editText.getText().toString().equals("")) {//处理开始时输入的符号
-                    Log.d("SSSSSSSSSSSSSSSSSSs","x");
+                    //Log.d("SSSSSSSSSSSSSSSSSSs","x");
                     break;
                 }
                 if(clear_flag){
@@ -206,7 +228,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     public void handleMod(){
-
+        if(editText.getText().toString().indexOf("+") == -1 ||editText.getText().toString().indexOf("*") == -1 ||
+                editText.getText().toString().indexOf("-") == -1 ||editText.getText().toString().indexOf("/") == -1 ){
+            double d =Double.parseDouble(editText.getText().toString());
+            editText.setText(d * 0.01 + "");
+            return;
+        }
         String exp = editText.getText().toString();
 
         editText.setText( handlePreNum(exp,handleLastNum(exp))
@@ -228,6 +255,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int i = len - 1;
         int count = 0;
         String rst = "";
+        Log.d("xxxxxxxxxxxxxxxxxxxx","" + i);
+        Log.d("SSSSSSSSSSSSSSSSSSSS","" + str);
         for(;i > 0;i--){
             if(str.charAt(i) == '+'||str.charAt(i) == '-'
                     ||str.charAt(i) == '*'||str.charAt(i) == '/'){
@@ -242,10 +271,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             } else {                                                       //如：+456  45.6
                 int mid = Integer.parseInt(str.charAt(i) + "");
-                //Log.d("midmidmid"," "  +  mid);
+                Log.d("midmidmid"," "  +  mid);
                 num[count] = mid;                         // 6 5 4 count == 3    6 . 5 4   c = 4
-                //Log.d("mid"," " + num[count]);
-                //Log.d("pppppppppppppppppp", "charAt:" + str.charAt(i) + " count:" + count + " "+ i);
+                Log.d("mid"," " + num[count]);
+                Log.d("pppppppppppppppppp", "charAt:" + str.charAt(i) + " count:" + count + " "+ i);
                 count ++;
             }
         }

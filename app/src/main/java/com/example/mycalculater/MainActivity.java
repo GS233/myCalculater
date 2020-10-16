@@ -103,6 +103,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_c.setOnClickListener(this);
         btn_back.setOnClickListener(this);
         btn_more.setOnClickListener(this);
+
     }
 
 

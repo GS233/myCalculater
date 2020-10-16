@@ -78,7 +78,7 @@ public class scienceActivity extends Activity implements View.OnClickListener{
         View btn_equ = findViewById(R.id.btn_equ);//=
         View btn_c = findViewById(R.id.btn_c);//清空
         View btn_back = findViewById(R.id.btn_back);//回格
-        View btn_more = findViewById(R.id.btn_more);//跳转
+        View btn_less = findViewById(R.id.btn_less);//跳转
 
         editText = (EditText) findViewById(R.id.et);//结果集
 
@@ -106,7 +106,7 @@ public class scienceActivity extends Activity implements View.OnClickListener{
 
         btn_c.setOnClickListener(this);
         btn_back.setOnClickListener(this);
-        btn_more.setOnClickListener(this);
+        btn_less.setOnClickListener(this);
 
     }
 
@@ -154,6 +154,10 @@ public class scienceActivity extends Activity implements View.OnClickListener{
             case R.id.btn_mis:
             case R.id.btn_mul:
             case R.id.btn_div:
+                if(editText.getText().toString().equals("")) {//处理开始时输入的符号
+                    Log.d("SSSSSSSSSSSSSSSSSSs","x");
+                    break;
+                }
                 if(clear_flag){
                     clear_flag = false;
                     input = "";
@@ -174,6 +178,10 @@ public class scienceActivity extends Activity implements View.OnClickListener{
             case R.id.btn_mod:
                 handleMod();break;
             case R.id.btn_back:
+                if(editText.getText().toString().equals("")){//处理连点
+                    //Log.d("SSSSSSSSSSSSSSs","x");
+                    break;
+                }
                 if(clear_flag){
                     clear_flag = false;
                     input = "";

@@ -150,6 +150,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_mis:
             case R.id.btn_mul:
             case R.id.btn_div:
+                //Log.d("XXXXXXXXXXXXX","S" + editText.getText().toString());
+                if(editText.getText().toString().equals("")) {//处理开始时输入的符号
+                    Log.d("SSSSSSSSSSSSSSSSSSs","x");
+                    break;
+                }
                 if(clear_flag){
                     clear_flag = false;
                     input = "";
@@ -170,6 +175,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_mod:
                 handleMod();break;
             case R.id.btn_back:
+                if(editText.getText().toString().equals("")){//处理连点
+                    //Log.d("SSSSSSSSSSSSSSs","x");
+                    break;
+                }
                 if(clear_flag){
                     clear_flag = false;
                     input = "";

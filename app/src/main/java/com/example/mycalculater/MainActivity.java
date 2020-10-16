@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     boolean clear_flag;//清空标识
     private EditText et;
 
-
+    boolean isLastPoint = false;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -115,6 +115,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         //获取文本内容
         String input = editText.getText().toString();
+
+        //boolean isLastPoint = false;
         switch (view.getId()){
             case R.id.btn_0:
             case R.id.btn_1:
@@ -140,7 +142,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     clear_flag = false;
                     editText.setText("");//赋值为空
                 }
+                if(isLastPoint) {
+                    break;
+                }
                 editText.setText(input + ((Button)view).getText());//结果集就为本身
+                isLastPoint = true;
                 break;
             case R.id.btn_add:
             case R.id.btn_mis:
@@ -179,6 +185,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_c:
                 editText.setText("");
+                isLastPoint = false;
+                break;
         }
     }
 

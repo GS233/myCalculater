@@ -379,6 +379,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             }
         }
+
         return numStack.removeLast();
     }
 

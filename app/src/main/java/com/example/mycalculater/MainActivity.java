@@ -128,6 +128,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_7:
             case R.id.btn_8:
             case R.id.btn_9:
+
                 if(clear_flag){
                     clear_flag = false;
                     editText.setText("");//赋值为空

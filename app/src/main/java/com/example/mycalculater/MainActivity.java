@@ -1,5 +1,6 @@
 package com.example.mycalculater;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //清除
     private  Button btn_back;
     private  Button btn_c;//clear
+    private  Button btn_more;
 
     boolean clear_flag;//清空标识
     private EditText et;
@@ -107,11 +109,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-
-    private double calculate(double num1,double num2,char operate){
-        return 1.1;
-    }
-
     @Override
     public void onClick(View view) {
         //获取文本内容
@@ -129,7 +126,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_7:
             case R.id.btn_8:
             case R.id.btn_9:
-
                 if(clear_flag){
                     clear_flag = false;
                     editText.setText("");//赋值为空
@@ -189,15 +185,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 editText.setText("");
                 isLastPoint = false;
                 break;
+            case R.id.btn_more:
+                // 给bnt1添加点击响应事件
+                Intent intent=new Intent(MainActivity.this,scienceActivity.class);
+                //启动
+                startActivity(intent);
+                break;
+
         }
     }
 
 
     public void handleMod(){
+
         String exp = editText.getText().toString();
 
-
-        editText.setText( handlePreNum(exp,handleLastNum(exp)) + (int)handleLastNum(exp) * 0.01 + "");
+        editText.setText( handlePreNum(exp,handleLastNum(exp))
+                + (int)handleLastNum(exp) * 0.01 + "");
     }
     public String handlePreNum(String str1,double lastNum){//处理前置字符
         int iLastNum = (int)lastNum;

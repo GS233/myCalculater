@@ -442,10 +442,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 class Calculate {
     //计算结果
     public static Double result(String str) {
+        str = strPre(str);
         List<String> strList = strToStrList(str);
         List<String> postList = toPostOrder(strList);
+        //Log.d("XXXXXXXXX","str"+strList.toString());
         Double result = getResult(postList);
         return result;
+    }
+    private static String strPre(String str){//去空格
+        String rst = "";
+        for(int i = 0 ; i < str.length() ; i++){
+            if(str.charAt(i) == ' '){
+
+            } else {
+                rst += str.charAt(i);
+            }
+
+        }
+        return rst;
     }
     //将字符串转换为字符串List
     private static List<String> strToStrList(String str) {

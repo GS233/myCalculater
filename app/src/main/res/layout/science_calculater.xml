@@ -73,9 +73,9 @@
                 android:id="@+id/btn_"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:background="@drawable/button"
-                android:text="="
-                android:textSize="30dp" />
+                android:background="@drawable/undeve_button"
+                android:text="未开发"
+                android:textSize="20dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -265,12 +265,12 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/btn_pow"
+                android:id="@+id/btn_undeve"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:background="@drawable/button"
-                android:text="pow"
-                android:textSize="25dp" />
+                android:background="@drawable/undeve_button"
+                android:text="未开发"
+                android:textSize="20dp" />
 
             <Button
                 android:id="@+id/btn_less"

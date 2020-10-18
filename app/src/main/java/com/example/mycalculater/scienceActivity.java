@@ -169,6 +169,19 @@ public class scienceActivity extends Activity implements View.OnClickListener {
                     clear_flag = false;
                     editText.setText("");//赋值为空
                 }
+                if (editText.getText().toString() == null || editText.getText().toString().isEmpty()) {
+                    editText.setText("请先输入数字，在输入小数点");
+                    break;
+                }
+                if (editText.getText().toString().indexOf("sin") == -1 && editText.getText().toString().indexOf("cos") == -1
+                        && editText.getText().toString().indexOf("tan") == -1 && editText.getText().toString().indexOf("/") == -1
+                        && editText.getText().toString().indexOf("*") == -1 && editText.getText().toString().indexOf("+") == -1
+                        && editText.getText().toString().indexOf("-") == -1 && editText.getText().toString().indexOf("√") == -1) {
+
+                } else{
+                    editText.setText("科学运算符不能进行复杂运算哦！");
+                    break;
+                }
                 double lastNum = handleLastNum(editText.getText().toString());
                 Log.d("xxxxx", "" + lastNum);
                 double d = 0;
@@ -222,7 +235,7 @@ public class scienceActivity extends Activity implements View.OnClickListener {
             case R.id.btn_mod:
                 if (checkNameChese(editText.getText().toString())) {
                     editText.setText("请勿输入汉字");
-                    return;
+                    break;
                 }
                 handleMod();
                 break;
@@ -275,6 +288,10 @@ public class scienceActivity extends Activity implements View.OnClickListener {
                 editText.setText(input + " " + ((Button) view).getText());
                 break;
             case R.id.btn_1divX:
+                if (checkNameChese(editText.getText().toString())) {
+                    editText.setText("请勿输入汉字");
+                    break;
+                }
                 oneDivXCalcu();
                 break;
             case R.id.btn_leftBrackets:
@@ -293,7 +310,12 @@ public class scienceActivity extends Activity implements View.OnClickListener {
                 editText.setText(input + " " + ((Button) view).getText());
                 break;
             case R.id.btn_1_X_add:
+                if (checkNameChese(editText.getText().toString())) {
+                    editText.setText("请勿输入汉字");
+                    break;
+                }
                 oneToXAdd();
+                break;
         }
     }
 
@@ -304,7 +326,7 @@ public class scienceActivity extends Activity implements View.OnClickListener {
             double d = Double.parseDouble(str);
             if (d == (int) d) {
                 editText.setText("" + (d + 1) * d / 2);
-            } else{
+            } else {
 
             }
         } else {

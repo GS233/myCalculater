@@ -138,10 +138,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 editText.setText(input + ((Button)view).getText());//结果集就为本身
                 break;
             case R.id.btn_point:
+                Log.d("XXXXXXXXXXXXXXXX","x"  + editText.getText().toString() + "x");
                 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 if(clear_flag){
                     clear_flag = false;
                     editText.setText("");//赋值为空
+                }
+                if(editText.getText().toString() == null || editText.getText().toString().isEmpty()){
+                    editText.setText("请先输入数字，在输入小数点");
+                    break;
                 }
                 double lastNum = handleLastNum(editText.getText().toString());
                 Log.d("xxxxx","" + lastNum);

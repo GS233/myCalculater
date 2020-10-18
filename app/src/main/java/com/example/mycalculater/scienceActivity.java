@@ -220,7 +220,7 @@ public class scienceActivity extends Activity implements View.OnClickListener {
                 editText.setText(input + " " + ((Button) view).getText());
                 break;
             case R.id.btn_mod:
-                if(checkNameChese(editText.getText().toString())){
+                if (checkNameChese(editText.getText().toString())) {
                     editText.setText("请勿输入汉字");
                     return;
                 }
@@ -241,7 +241,7 @@ public class scienceActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.btn_equ://运算结果  =
                 //Log.d("XXXXXXXXXXXXXXXXXXXXX", "" + editText.getText().toString());
-                if(checkNameChese(editText.getText().toString())){
+                if (checkNameChese(editText.getText().toString())) {
                     editText.setText("请勿输入汉字");
                     break;
                 }
@@ -250,11 +250,14 @@ public class scienceActivity extends Activity implements View.OnClickListener {
                     handleSqrtCalcu(editText.getText().toString());
                     break;
                 } else if (haveSin()) {
-                    sinCalcu();break;
-                }else if( haveCos()){
-                    cosCalcu();break;
-                }else if(haveTan()){
-                    tanCalcu();break;
+                    sinCalcu();
+                    break;
+                } else if (haveCos()) {
+                    cosCalcu();
+                    break;
+                } else if (haveTan()) {
+                    tanCalcu();
+                    break;
                 }
                 finalResult();//调用处理结果集的方法
                 break;
@@ -290,31 +293,49 @@ public class scienceActivity extends Activity implements View.OnClickListener {
                 editText.setText(input + " " + ((Button) view).getText());
                 break;
             case R.id.btn_1_X_add:
-                editText.setText(input + " " + ((Button) view).getText());
+                oneToXAdd();
         }
     }
-    public void oneDivXCalcu(){
-        if(editText.getText().toString() == null || editText.getText().toString().isEmpty()){
+
+    public void oneToXAdd() {
+        String str = editText.getText().toString();
+        if (str.indexOf("sin") == -1 && str.indexOf("cos") == -1 && str.indexOf("tan") == -1 && str.indexOf("/") == -1 &&
+                str.indexOf("*") == -1 && str.indexOf("+") == -1 && str.indexOf("-") == -1 && str.indexOf("√") == -1) {
+            double d = Double.parseDouble(str);
+            if (d == (int) d) {
+                editText.setText("" + (d + 1) * d / 2);
+            } else{
+
+            }
+        } else {
+            editText.setText("error!只能输入整数哦！");
+        }
+
+    }
+
+    public void oneDivXCalcu() {
+        if (editText.getText().toString() == null || editText.getText().toString().isEmpty()) {
             editText.setText("请输入数据~~~");
             return;
         }
-        if(checkNameChese(editText.getText().toString())){
+        if (checkNameChese(editText.getText().toString())) {
             editText.setText("请勿输入汉字哦");
             return;
         }
         String str = editText.getText().toString();
         //Log.d("XXXXXXXX","" + str);
-        if(str.indexOf("sin")== -1 &&str.indexOf("cos")== -1 &&str.indexOf("tan")== -1 &&str.indexOf("/")== -1 &&
-                str.indexOf("*")== -1 &&str.indexOf("+")== -1 &&str.indexOf("-")== -1&&str.indexOf("√")== -1){
-            if( Double.parseDouble(str) == 0 ){
+        if (str.indexOf("sin") == -1 && str.indexOf("cos") == -1 && str.indexOf("tan") == -1 && str.indexOf("/") == -1 &&
+                str.indexOf("*") == -1 && str.indexOf("+") == -1 && str.indexOf("-") == -1 && str.indexOf("√") == -1) {
+            if (Double.parseDouble(str) == 0) {
                 editText.setText("分母不能为0哦");
-            }else{
-                editText.setText( "" + 1/Double.parseDouble(str));
+            } else {
+                editText.setText("" + 1 / Double.parseDouble(str));
             }
-        } else{
+        } else {
             editText.setText("error!输入错误！");
         }
     }
+
     //三角函数
     public boolean haveSin() {
         String str = editText.getText().toString();
@@ -461,6 +482,7 @@ public class scienceActivity extends Activity implements View.OnClickListener {
         }
         return;
     }
+
     public static boolean isChinese(char c) {
         Character.UnicodeBlock ub = Character.UnicodeBlock.of(c);
         if (ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS
@@ -473,6 +495,7 @@ public class scienceActivity extends Activity implements View.OnClickListener {
         }
         return false;
     }
+
     public boolean checkNameChese(String name) {
         boolean res = true;
         char[] cTemp = name.toCharArray();

@@ -55,7 +55,7 @@
                 android:layout_height="100dp"
                 android:background="@drawable/button"
                 android:text="back"
-                android:textSize="25dp"
+                android:textSize="20dp"
                 />
 
             <Button
@@ -213,9 +213,8 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:background="@drawable/button"
-                android:text="More"
-                android:textSize="25dp"
-                />
+                android:text="more"
+                android:textSize="20dp" />
 
             <Button
                 android:id="@+id/btn_0"

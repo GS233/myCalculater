@@ -330,7 +330,7 @@ public class scienceActivity extends Activity implements View.OnClickListener {
 
             }
         } else {
-            editText.setText("error!只能输入整数哦！");
+            editText.setText("错误!只能输入整数哦！");
         }
 
     }
@@ -354,7 +354,7 @@ public class scienceActivity extends Activity implements View.OnClickListener {
                 editText.setText("" + 1 / Double.parseDouble(str));
             }
         } else {
-            editText.setText("error!输入错误！");
+            editText.setText("错误!输入错误！");
         }
     }
 
@@ -373,13 +373,13 @@ public class scienceActivity extends Activity implements View.OnClickListener {
         double a = 0;
         if (str.charAt(1) == 's') {
         } else {
-            editText.setText("error！复杂符号只能做简单计算哦！");
+            editText.setText("错误！复杂符号只能做简单计算哦！");
             return;
         }
         for (; i < str.length(); i++) {//判断是否只有一个运算符
             if (str.charAt(i) == '+' || str.charAt(i) == '-'
                     || str.charAt(i) == '*' || str.charAt(i) == '/') {
-                editText.setText("error！复杂符号只能做简单计算哦！");
+                editText.setText("错误！复杂符号只能做简单计算哦！");
                 return;
             }
         }
@@ -393,13 +393,13 @@ public class scienceActivity extends Activity implements View.OnClickListener {
         double a = 0;
         if (str.charAt(1) == 'c') {
         } else {
-            editText.setText("error！复杂符号只能做简单计算哦！");
+            editText.setText("错误！复杂符号只能做简单计算哦！");
             return;
         }
         for (; i < str.length(); i++) {//判断是否只有一个运算符
             if (str.charAt(i) == '+' || str.charAt(i) == '-'
                     || str.charAt(i) == '*' || str.charAt(i) == '/') {
-                editText.setText("error！复杂符号只能做简单计算哦！");
+                editText.setText("错误！复杂符号只能做简单计算哦！");
                 return;
             }
         }
@@ -421,13 +421,13 @@ public class scienceActivity extends Activity implements View.OnClickListener {
         double a = 0;
         if (str.charAt(1) == 't') {
         } else {
-            editText.setText("error！复杂符号只能做简单计算哦！");
+            editText.setText("错误！复杂符号只能做简单计算哦！");
             return;
         }
         for (; i < str.length(); i++) {//判断是否只有一个运算符
             if (str.charAt(i) == '+' || str.charAt(i) == '-'
                     || str.charAt(i) == '*' || str.charAt(i) == '/') {
-                editText.setText("error！复杂符号只能做简单计算哦！");
+                editText.setText("错误！复杂符号只能做简单计算哦！");
                 return;
             }
         }
@@ -494,16 +494,17 @@ public class scienceActivity extends Activity implements View.OnClickListener {
             a = handleSpace(str);
             if (a < 0) {
                 //root can't be negative
-                editText.setText("error！a要大于0哦！");
+                editText.setText("错误！a要大于0哦！");
             } else {
                 editText.setText(Math.sqrt(a) + "");
                 return;
             }
         } else {
-            editText.setText("error！复杂符号只能做简单计算哦！");
+            editText.setText("错误！复杂符号只能做简单计算哦！");
         }
         return;
     }
+
 
     public static boolean isChinese(char c) {
         Character.UnicodeBlock ub = Character.UnicodeBlock.of(c);
